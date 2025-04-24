@@ -9,7 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.steveng9.banking.databinding.FragmentProfileBinding
 
 /**
- * Fragment for displaying user profile and security settings
+ * Fragment for displaying user profile and settings
  */
 class ProfileFragment : Fragment() {
 
@@ -28,17 +28,43 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        // Add click listeners to profile buttons
-        binding.changePassword.setOnClickListener {
-            Snackbar.make(view, "Change password dialog would appear", Snackbar.LENGTH_SHORT).show()
+        setupClickListeners()
+    }
+    
+    private fun setupClickListeners() {
+        // Sign Out
+        binding.signOutText.setOnClickListener {
+            Snackbar.make(binding.root, "Signing out...", Snackbar.LENGTH_SHORT).show()
+            // In a real app, we would sign out the user and navigate back to login
         }
         
-        binding.setupBiometrics.setOnClickListener {
-            Snackbar.make(view, "Biometric setup would begin", Snackbar.LENGTH_SHORT).show()
+        // Profile settings options
+        binding.personalInfoSection.setOnClickListener {
+            Snackbar.make(binding.root, "Opening Personal Information", Snackbar.LENGTH_SHORT).show()
         }
         
-        binding.loginSettings.setOnClickListener {
-            Snackbar.make(view, "Login settings screen would open", Snackbar.LENGTH_SHORT).show()
+        binding.securitySection.setOnClickListener {
+            Snackbar.make(binding.root, "Opening Security Settings", Snackbar.LENGTH_SHORT).show()
+        }
+        
+        binding.accountSettingsSection.setOnClickListener {
+            Snackbar.make(binding.root, "Opening Account & Feature Settings", Snackbar.LENGTH_SHORT).show()
+        }
+        
+        binding.helpSection.setOnClickListener {
+            Snackbar.make(binding.root, "Opening Help", Snackbar.LENGTH_SHORT).show()
+        }
+        
+        binding.alertsSection.setOnClickListener {
+            Snackbar.make(binding.root, "Opening Alerts & Notifications", Snackbar.LENGTH_SHORT).show()
+        }
+        
+        binding.walletSection.setOnClickListener {
+            Snackbar.make(binding.root, "Opening Digital Wallet Manager", Snackbar.LENGTH_SHORT).show()
+        }
+        
+        binding.statementsSection.setOnClickListener {
+            Snackbar.make(binding.root, "Opening Statements & Documents", Snackbar.LENGTH_SHORT).show()
         }
     }
 
