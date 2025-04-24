@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.steveng9.banking.databinding.FragmentFirstBinding
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * Login screen fragment
  */
 class FirstFragment : Fragment() {
 
@@ -33,7 +34,20 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            // Simple mock login validation
+            val username = binding.usernameInput.text.toString()
+            val password = binding.passwordInput.text.toString()
+            
+            if (username.isBlank() || password.isBlank()) {
+                Snackbar.make(view, "Please enter both username and password", Snackbar.LENGTH_SHORT).show()
+            } else {
+                // Navigate to the banking dashboard
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            }
+        }
+        
+        binding.forgotPassword.setOnClickListener {
+            Snackbar.make(view, "Password reset functionality would go here", Snackbar.LENGTH_SHORT).show()
         }
     }
 
