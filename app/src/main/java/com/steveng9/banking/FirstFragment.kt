@@ -34,16 +34,11 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
-            // Simple mock login validation
-            val username = binding.usernameInput.text.toString()
-            val password = binding.passwordInput.text.toString()
+            // Modified for faster testing: No validation, just navigate to dashboard
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
             
-            if (username.isBlank() || password.isBlank()) {
-                Snackbar.make(view, "Please enter both username and password", Snackbar.LENGTH_SHORT).show()
-            } else {
-                // Navigate to the banking dashboard
-                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-            }
+            // Show a toast indicating test mode
+            // Snackbar.make(view, "Test mode: Bypassing login validation", Snackbar.LENGTH_SHORT).show()
         }
         
         binding.forgotPassword.setOnClickListener {
