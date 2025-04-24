@@ -43,6 +43,9 @@ class SecondFragment : Fragment() {
         // Set account information using our model class
         displayAccountInformation()
 
+        // Set up click listeners for account cards to navigate to details
+        setupAccountCardListeners()
+
         // Set up the logout button
         binding.buttonSecond.setOnClickListener {
             // Navigate back to the login screen
@@ -66,6 +69,37 @@ class SecondFragment : Fragment() {
         savingsAccount?.let {
             binding.savingsNumber.text = it.maskedAccountNumber
             binding.savingsBalance.text = it.getFormattedBalance()
+        }
+    }
+    
+    /**
+     * Set up click listeners for account cards to navigate to account details screen
+     */
+    private fun setupAccountCardListeners() {
+        // Set up click listener for checking account card
+        binding.checkingAccountCard.setOnClickListener {
+            val checkingAccount = accounts.find { it.accountType == BankAccount.AccountType.CHECKING }
+            checkingAccount?.let {
+                // Create a Bundle with the account ID
+                val bundle = Bundle().apply {
+                    putString("accountId", it.id)
+                }
+                // Navigate using the action ID and bundle
+                findNavController().navigate(R.id.action_SecondFragment_to_AccountDetailsFragment, bundle)
+            }
+        }
+        
+        // Set up click listener for savings account card
+        binding.savingsAccountCard.setOnClickListener {
+            val savingsAccount = accounts.find { it.accountType == BankAccount.AccountType.SAVINGS }
+            savingsAccount?.let {
+                // Create a Bundle with the account ID
+                val bundle = Bundle().apply {
+                    putString("accountId", it.id)
+                }
+                // Navigate using the action ID and bundle
+                findNavController().navigate(R.id.action_SecondFragment_to_AccountDetailsFragment, bundle)
+            }
         }
     }
 

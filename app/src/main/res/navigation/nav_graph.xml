@@ -15,6 +15,7 @@
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
     </fragment>
+    
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.steveng9.banking.SecondFragment"
@@ -24,5 +25,24 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+            
+        <action
+            android:id="@+id/action_SecondFragment_to_AccountDetailsFragment"
+            app:destination="@id/AccountDetailsFragment" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/AccountDetailsFragment"
+        android:name="com.steveng9.banking.AccountDetailsFragment"
+        android:label="Account Details"
+        tools:layout="@layout/fragment_account_details">
+        
+        <argument
+            android:name="accountId"
+            app:argType="string" />
+            
+        <action
+            android:id="@+id/action_AccountDetailsFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
     </fragment>
 </navigation>
